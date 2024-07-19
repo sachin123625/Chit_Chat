@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "build": "npm i"
+  },
   "dependencies": {
     "socket.io": "^4.7.5"
   }
