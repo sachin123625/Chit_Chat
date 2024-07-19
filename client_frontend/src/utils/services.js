@@ -1,13 +1,16 @@
-export const baseURL = "http://localhost:5000/api";
+// services.js
+
+// Use the VITE_API_BASE_URL environment variable
+export const baseURL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
 
 export const postRequest = async (url, body) => {
     try {
-        const response = await fetch(url, {
+        const response = await fetch(`${baseURL}${url}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body
+            body: JSON.stringify(body), // Ensure the body is stringified
         });
 
         const data = await response.json();
@@ -23,22 +26,28 @@ export const postRequest = async (url, body) => {
     }
 };
 
+export const getRequest = async (url) => {
+    try {
+        const response = await fetch(`${baseURL}${url}`, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
 
-export const getRequest = async(url) => {
+        const data = await response.json();
 
-    const response = await fetch(url)
+        if (!response.ok) {
+            let message = 'An error occurred...';
 
-    const data = await response.json()
+            if (data?.message) {
+                message = data.message;
+            }
 
-    if(!response.ok){
-        let message = "An error occurred..."
-
-        if(data?.message){
-            message = data.message
+            return { error: true, message };
         }
 
-        return {error: true, message}
+        return data;
+    } catch (error) {
+        return { error: true, message: 'Network error' };
     }
-
-    return data;
-}
+};
