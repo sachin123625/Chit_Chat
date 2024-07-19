@@ -1,7 +1,7 @@
 // services.js
 
 // Use the VITE_API_BASE_URL environment variable
-export const baseURL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
+export const baseURL = "https://chit-chat-80uq.onrender.com" || "http://localhost:5000/api";
 
 export const postRequest = async (url, body) => {
     try {
