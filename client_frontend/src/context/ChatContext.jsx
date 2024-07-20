@@ -23,9 +23,7 @@ export const ChatContextProvider = ({ children, user }) => {
     const [notifications, setNotifications] = useState([]);
     const [allUsers, setAllUsers] = useState([]);
 
-    console.log("base url xxxxx:  ", baseURL);
-
-    console.log("Notificationsddd : " , notifications);
+    // console.log("Notificationsddd : " , notifications);
 
     // console.log("current: ", onlineUsers);
     
