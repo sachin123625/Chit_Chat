@@ -25,7 +25,7 @@ export const ChatContextProvider = ({ children, user }) => {
 
     console.log("base url xxxxx:  ", baseURL);
 
-    // console.log("Notificationsddd : " , notifications);
+    console.log("Notificationsddd : " , notifications);
 
     // console.log("current: ", onlineUsers);
     
@@ -95,7 +95,7 @@ export const ChatContextProvider = ({ children, user }) => {
 
     useEffect(() => {
         const getUsers = async () => {
-            const response = await getRequest(`${baseURL}/api/user`);
+            const response = await getRequest(`${baseURL}/user`);
             if (response.error) {
                 return console.error("Error fetching users: ", response.error);
             }
@@ -126,7 +126,7 @@ export const ChatContextProvider = ({ children, user }) => {
                 setIsUserChatsLoading(true);
                 setUserChatsError(null);
 
-                const response = await getRequest(`${baseURL}/api/chat/${user._id}`);
+                const response = await getRequest(`${baseURL}/chat/${user._id}`);
 
                 setIsUserChatsLoading(false);
 
@@ -146,7 +146,7 @@ export const ChatContextProvider = ({ children, user }) => {
             setIsMessagesLoading(true);
             setMessagesError(null);
 
-            const response = await getRequest(`${baseURL}/api/message/${currentChat?._id}`);
+            const response = await getRequest(`${baseURL}/message/${currentChat?._id}`);
 
             setIsMessagesLoading(false);
 
@@ -166,7 +166,7 @@ export const ChatContextProvider = ({ children, user }) => {
     const sendTextMessage = useCallback(async (textMessage, sender, currentChatId, setTextMessage) => {
         if (!textMessage.trim()) return console.error("Message is empty");
 
-        const response = await postRequest(`${baseURL}/api/message`, JSON.stringify({ text: textMessage, senderId: sender, chatId: currentChatId }));
+        const response = await postRequest(`${baseURL}/message`, JSON.stringify({ text: textMessage, senderId: sender, chatId: currentChatId }));
 
         if (response.error) {
             setSendTextMessageError(response.error);
@@ -182,7 +182,7 @@ export const ChatContextProvider = ({ children, user }) => {
     }, []);
 
     const createChat = useCallback(async (firstId, secondId) => {
-        const response = await postRequest(`${baseURL}/api/chat`, JSON.stringify({ firstId, secondId }));
+        const response = await postRequest(`${baseURL}/chat`, JSON.stringify({ firstId, secondId }));
 
         if (response.error) {
             return console.error("Error creating chat: ", response.error);
