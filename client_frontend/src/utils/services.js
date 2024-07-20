@@ -5,7 +5,7 @@ export const baseURL = import.meta.env.VITE_API_BASE_URL || "http://localhost:50
 
 export const postRequest = async (url, body) => {
     try {
-        const response = await fetch(`${baseURL}${url}`, {
+        const response = await fetch(`${url}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ export const postRequest = async (url, body) => {
 
 export const getRequest = async (url) => {
     try {
-        const response = await fetch(`${baseURL}${url}`, {
+        const response = await fetch(`${url}`, {
             headers: {
                 'Content-Type': 'application/json',
             },
