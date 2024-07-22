@@ -8,15 +8,22 @@ const messageRoute = require("./Routes/messageRoute");
 const app = express();
 require('dotenv').config();
 
-// CORS configuration
+app.use(express.json());
+
+// Configure CORS
+const allowedOrigins = ['http://localhost:5173', 'https://realtimechitchatproj.netlify.app'];
 const corsOptions = {
-    origin: 'http://localhost:5173', // Your frontend domain
-    credentials: true, // if you need to handle cookies
-    optionsSuccessStatus: 200 // some legacy browsers choke on 204
+    origin: function (origin, callback) {
+        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true, // Enable this if you need to send cookies or HTTP authentication
 };
 
 app.use(cors(corsOptions));
-app.use(express.json());
 
 app.use("/api/user", userRoute);
 app.use("/api/chat", chatRoute);
