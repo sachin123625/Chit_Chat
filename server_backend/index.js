@@ -8,8 +8,16 @@ const messageRoute = require("./Routes/messageRoute");
 const app = express();
 require('dotenv').config();
 
+// CORS configuration
+const corsOptions = {
+    origin: 'http://localhost:5173', // Your frontend domain
+    credentials: true, // if you need to handle cookies
+    optionsSuccessStatus: 200 // some legacy browsers choke on 204
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
-app.use(cors());
+
 app.use("/api/user", userRoute);
 app.use("/api/chat", chatRoute);
 app.use("/api/message", messageRoute);
