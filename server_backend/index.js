@@ -14,13 +14,13 @@ app.use(express.json());
 const allowedOrigins = ['http://localhost:5173', 'https://realtimechitchatproj.netlify.app'];
 const corsOptions = {
     origin: function (origin, callback) {
-        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
             callback(null, true);
         } else {
             callback(new Error('Not allowed by CORS'));
         }
     },
-    credentials: true, // Enable this if you need to send cookies or HTTP authentication
+    credentials: true, // Enable if you need to send cookies or HTTP authentication headers
 };
 
 app.use(cors(corsOptions));
