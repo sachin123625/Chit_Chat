@@ -11,7 +11,7 @@ require('dotenv').config();
 app.use(express.json());
 
 // Configure CORS
-const allowedOrigins = ['http://localhost:5173', 'https://realtimechitchatproj.netlify.app'];
+const allowedOrigins = ['http://localhost:5173', 'https://chit-chat-2ia9.onrender.com'];
 const corsOptions = {
     origin: function (origin, callback) {
         if (!origin || allowedOrigins.indexOf(origin) !== -1) {
