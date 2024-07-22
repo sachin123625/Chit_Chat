@@ -8,10 +8,6 @@ const messageRoute = require("./Routes/messageRoute");
 const app = express();
 require('dotenv').config();
 
-app.get("/", (req, res) => {
-    // serve my react app  
-});
-
 app.use(express.json());
 
 // Configure CORS
