@@ -14,6 +14,7 @@ app.use(express.json());
 const allowedOrigins = ['http://localhost:5173', 'https://chit-chat-2ia9.onrender.com'];
 const corsOptions = {
     origin: function (origin, callback) {
+        console.log("CORS request from origin:", origin); // Log the origin making the request
         if (!origin || allowedOrigins.indexOf(origin) !== -1) {
             callback(null, true);
         } else {
@@ -23,7 +24,13 @@ const corsOptions = {
     credentials: true, // Enable if you need to send cookies or HTTP authentication headers
 };
 
-app.use(cors(corsOptions));
+app.use(cors(corsOptions)); // Use CORS middleware before routes
+
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*"); // Allow all origins, you can change this to a specific one
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 app.use("/api/user", userRoute);
 app.use("/api/chat", chatRoute);
