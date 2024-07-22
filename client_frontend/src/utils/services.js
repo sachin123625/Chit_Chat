@@ -2,6 +2,9 @@ export const baseURL = "https://chit-chat-backend-97lm.onrender.com/api";
 
 export const postRequest = async (url, body) => {
     try {
+        console.log("Sending POST request to:", url);
+        console.log("Request body:", body);
+        
         const response = await fetch(url, {
             method: 'POST',
             headers: {
