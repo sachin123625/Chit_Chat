@@ -10,8 +10,7 @@ export const postRequest = async (url, body) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(body),
-            credentials: 'include' // Include credentials (e.g., cookies) with the request
+            body: JSON.stringify(body)
         });
 
         const data = await response.json();
@@ -29,7 +28,7 @@ export const postRequest = async (url, body) => {
 
 export const getRequest = async(url) => {
     try {
-        const response = await fetch(url, { credentials: 'include' });
+        const response = await fetch(url);
 
         const data = await response.json();
 

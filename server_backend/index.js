@@ -25,7 +25,19 @@ const corsOptions = {
     optionsSuccessStatus: 200 // Some legacy browsers choke on 204
 };
 
-app.use(cors(corsOptions)); // Use CORS middleware with options before routes
+app.use(cors(corsOptions)); // Use CORS middleware before routes
+
+// Additional headers for debugging
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*"); // Allow all origins, you can change this to a specific one
+    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    if (req.method === 'OPTIONS') {
+        res.sendStatus(200);
+    } else {
+        next();
+    }
+});
 
 app.use("/api/user", userRoute);
 app.use("/api/chat", chatRoute);
