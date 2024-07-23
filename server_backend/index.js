@@ -9,7 +9,22 @@ const app = express();
 require('dotenv').config();
 
 app.use(express.json());
-app.use(cors());
+
+const allowedOrigins = [
+    "https://chit-chat-2ia9.onrender.com",
+    "https://realtimechitchatproj.netlify.app"
+];
+
+app.use(cors({
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    }
+}));
+
 app.use("/api/user", userRoute);
 app.use("/api/chat", chatRoute);
 app.use("/api/message", messageRoute);
