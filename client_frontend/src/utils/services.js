@@ -1,4 +1,4 @@
-export const baseURL = "http://localhost:5000/api";
+export const baseURL = "https://chit-chat-backend-97lm.onrender.com/api";
 
 export const postRequest = async (url, body) => {
     try {
