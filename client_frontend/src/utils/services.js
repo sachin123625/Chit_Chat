@@ -1,16 +1,13 @@
-export const baseURL = "https://chit-chat-backend-97lm.onrender.com/api";
+export const baseURL = "http://localhost:5000/api";
 
 export const postRequest = async (url, body) => {
     try {
-        console.log("Sending POST request to:", url);
-        console.log("Request body:", body);
-        
         const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(body)
+            body
         });
 
         const data = await response.json();
@@ -26,24 +23,22 @@ export const postRequest = async (url, body) => {
     }
 };
 
+
 export const getRequest = async(url) => {
-    try {
-        const response = await fetch(url);
 
-        const data = await response.json();
+    const response = await fetch(url)
 
-        if (!response.ok) {
-            let message = "An error occurred...";
+    const data = await response.json()
 
-            if (data?.message) {
-                message = data.message;
-            }
+    if(!response.ok){
+        let message = "An error occurred..."
 
-            return { error: true, message };
+        if(data?.message){
+            message = data.message
         }
 
-        return data;
-    } catch (error) {
-        return { error: true, message: 'Network error' };
+        return {error: true, message}
     }
-};
+
+    return data;
+}
