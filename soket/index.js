@@ -1,31 +1,36 @@
 const { Server } = require("socket.io");
 
-const io = new Server({ cors: "http://localhost:5173/" });
+const io = new Server({
+    cors: {
+        origin: [
+            "http://localhost:5173",
+            "https://chit-chat-2ia9.onrender.com",
+            "https://realtimechitchatproj.netlify.app"
+        ],
+        methods: ["GET", "POST"]
+    }
+});
 
 let onlineUsers = [];
 
 io.on("connection", (socket) => {
-    console.log("A new connection" , socket.id);
+    console.log("A new connection", socket.id);
 
-    // listen a connection
-
+    // Listen for new user connection
     socket.on("addNewUser", (userId) => {
-
-        !onlineUsers.some((user) => user.userId === userId) && 
-
+        if (!onlineUsers.some((user) => user.userId === userId)) {
             onlineUsers.push({
                 userId,
                 socketId: socket.id,
             });
+        }
 
         console.log("A new user joined", userId);
-        console.log("onlineuserssss: ", onlineUsers);
+        console.log("onlineUsers: ", onlineUsers);
         io.emit("getOnlineUsers", onlineUsers);
-
     });
 
-    // add message
-
+    // Listen for messages
     socket.on("sendMessage", (message) => {
         const user = onlineUsers.find((user) => user.userId === message.recipientId);
 
@@ -37,14 +42,11 @@ io.on("connection", (socket) => {
                 date: new Date(),
             });
         }
-        
-    })
+    });
 
-
+    // Handle user disconnect
     socket.on("disconnect", () => {
-        
         onlineUsers = onlineUsers.filter((user) => user.socketId !== socket.id);
-
         io.emit("getOnlineUsers", onlineUsers);
     });
 });
