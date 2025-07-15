@@ -33,7 +33,7 @@ export const ChatContextProvider = ({ children, user }) => {
 
     // Initialize socket
     useEffect(() => {
-        const newSocket = io("https://chit-chat-soket-io.onrender.com");
+        const newSocket = io("http://localhost:3000");
         setSocket(newSocket);
 
         return () => newSocket.disconnect();

@@ -1,15 +1,27 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { FaUser, FaComments, FaInfoCircle, FaQuestionCircle, FaSignOutAlt, FaVolumeUp, FaVolumeMute } from "react-icons/fa";
+import { 
+  FaUser, 
+  FaComments, 
+  FaInfoCircle, 
+  FaQuestionCircle, 
+  FaSignOutAlt, 
+  FaVolumeUp, 
+  FaVolumeMute,
+  FaBell,
+  FaHome,
+  FaBars
+} from "react-icons/fa";
 import Notifications from "./Notifications";
-import '../assets/Navbar.css';
+import '../assets/Navbar_new.css';
 import logo from '../assets/logo.png';
 
 const Navbar = () => {
     const { user, setUser } = useContext(AuthContext);
     const navigate = useNavigate();
     const [soundEnabled, setSoundEnabled] = useState(true);
+    const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
     const handleLogout = () => {
         localStorage.removeItem("User");
@@ -21,78 +33,131 @@ const Navbar = () => {
         setSoundEnabled(!soundEnabled);
     };
 
+    const toggleSidebar = () => {
+        setSidebarCollapsed(!sidebarCollapsed);
+    };
+
     if (!user) {
         return (
-            <nav className="navbar navbar-expand-lg bg-dark navbar-not-logged-in">
-                <div className="container-fluid">
-                    <a className="navbar-brand text-white" href="/">
-                        <img src={logo} alt="Icon" className="navbar-icon" />
-                        Chit Chat
+            <nav className="navbar navbar-expand-lg navbar-dark bg-gradient">
+                <div className="container-fluid px-4">
+                    <a className="navbar-brand d-flex align-items-center text-white" href="/">
+                        <img src={logo} alt="Chit Chat Logo" className="navbar-logo me-3" />
+                        <span className="brand-text">Chit Chat</span>
                     </a>
-                    <button className="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
+                    <button 
+                        className="navbar-toggler border-0" 
+                        type="button" 
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#navbarContent" 
+                        aria-controls="navbarContent" 
+                        aria-expanded="false" 
+                        aria-label="Toggle navigation"
+                    >
+                        <FaBars className="text-white" />
                     </button>
-                    <div className="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-                        <ul className="navbar-nav mx-auto mb-2 mb-lg-0" id="links" style={{ width: '20%' }}>
-                            <li className="nav-item1">
-                                <a className="nav-link active text-white mx-3" aria-current="page" href="/">Home</a>
+                    <div className="collapse navbar-collapse" id="navbarContent">
+                        <ul className="navbar-nav mx-auto">
+                            <li className="nav-item">
+                                <a className="nav-link nav-link-custom active" href="/">
+                                    <FaHome className="me-2" />
+                                    Home
+                                </a>
                             </li>
-                            <li className="nav-item1">
-                                <a className="nav-link text-white mx-3" href="/about">About</a>
+                            <li className="nav-item">
+                                <a className="nav-link nav-link-custom" href="/about">
+                                    <FaInfoCircle className="me-2" />
+                                    About
+                                </a>
                             </li>
-                            <li className="nav-item1">
-                                <a className="nav-link text-white mx-3" href="/contact">Contact</a>
+                            <li className="nav-item">
+                                <a className="nav-link nav-link-custom" href="/contact">
+                                    <FaQuestionCircle className="me-2" />
+                                    Contact
+                                </a>
                             </li>
                         </ul>
-                        <a href="/login" className="btn btn-outline-light login-btn" style={{ width: '80px' }}>Login</a>
+                        <a href="/login" className="btn btn-primary-custom">
+                            <FaUser className="me-2" />
+                            Login
+                        </a>
                     </div>
                 </div>
             </nav>
         );
     } else {
         return (
-            <div className="navbar-container">
-                <div className="navbar">
-                    <div className="navbar-header">
-                        <img src={logo} alt="Logo" className="navbar-logo" />
-                        <div className="navbar-profile">
-                            <FaUser className="navbar-icon" />
-                            <span>{user.name}</span>
+            <div className={`sidebar ${sidebarCollapsed ? 'collapsed' : ''}`}>
+                <div className="sidebar-header">
+                    <div className="d-flex align-items-center">
+                        <img src={logo} alt="Logo" className="sidebar-logo" />
+                        {!sidebarCollapsed && <span className="brand-text ms-3">Chit Chat</span>}
+                    </div>
+                    <button 
+                        className="btn btn-link text-white p-0 sidebar-toggle"
+                        onClick={toggleSidebar}
+                    >
+                        <FaBars />
+                    </button>
+                </div>
+                
+                <div className="sidebar-profile">
+                    <div className="profile-avatar">
+                        <FaUser />
+                    </div>
+                    {!sidebarCollapsed && (
+                        <div className="profile-info">
+                            <h6 className="mb-0">{user.name}</h6>
+                            <small className="text-muted">Online</small>
+                        </div>
+                    )}
+                </div>
+
+                <ul className="sidebar-nav">
+                    <li className="nav-item">
+                        <a href="/" className="nav-link">
+                            <FaComments className="nav-icon" />
+                            {!sidebarCollapsed && <span>Chats</span>}
+                        </a>
+                    </li>
+                    
+                    <li className="nav-item">
+                        <div className="nav-link">
+                            <FaBell className="nav-icon" />
+                            {!sidebarCollapsed && <span>Notifications</span>}
+                            <Notifications soundEnabled={soundEnabled} collapsed={sidebarCollapsed} />
+                        </div>
+                    </li>
+                    
+                    <li className="nav-item">
+                        <a href="/about" className="nav-link">
+                            <FaInfoCircle className="nav-icon" />
+                            {!sidebarCollapsed && <span>About</span>}
+                        </a>
+                    </li>
+                    
+                    <li className="nav-item">
+                        <a href="/contact" className="nav-link">
+                            <FaQuestionCircle className="nav-icon" />
+                            {!sidebarCollapsed && <span>Help</span>}
+                        </a>
+                    </li>
+                    
+                    <li className="nav-item">
+                        <div className="nav-link" onClick={toggleSound}>
+                            {soundEnabled ? <FaVolumeUp className="nav-icon" /> : <FaVolumeMute className="nav-icon" />}
+                            {!sidebarCollapsed && <span>Sound {soundEnabled ? "On" : "Off"}</span>}
+                        </div>
+                    </li>
+                </ul>
+
+                <div className="sidebar-footer">
+                    <div className="nav-item logout-item">
+                        <div className="nav-link" onClick={handleLogout}>
+                            <FaSignOutAlt className="nav-icon" />
+                            {!sidebarCollapsed && <span>Logout</span>}
                         </div>
                     </div>
-                    <ul className="navbar-nav mt-4">
-                        <li className="nav-item">
-                            <a href="/" style={{ color: 'inherit', textDecoration: 'none' }}>
-                                <FaComments className="navbar-icon" />
-                                <span>Chats</span>
-                            </a>
-                        </li>
-                        <Notifications soundEnabled={soundEnabled} />
-                        <li className="nav-item">
-                            <a href="/about" style={{ color: 'inherit', textDecoration: 'none' }}>
-                                <FaInfoCircle className="navbar-icon" />
-                                <span>About</span>
-                            </a>
-                        </li>
-                        <li className="nav-item mb-4">
-                            <a href="/contact" style={{ color: 'inherit', textDecoration: 'none' }}>
-                                <FaQuestionCircle className="navbar-icon" />
-                                <span>Help</span>
-                            </a>
-                        </li>
-                        <li className="nav-item logout mt-4" onClick={handleLogout}>
-                            <a href="/logout" style={{ color: 'inherit', textDecoration: 'none' }}>
-                                <FaSignOutAlt className="navbar-icon" />
-                                <span>Logout</span>
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <div className="nav-link sound-icon" onClick={toggleSound}>
-                                {soundEnabled ? <FaVolumeUp className="navbar-icon white-color" /> : <FaVolumeMute className="navbar-icon white-color" />}
-                                <span className="white-color">{soundEnabled ? "on" : "off"}</span>
-                            </div>
-                        </li>
-                    </ul>
                 </div>
             </div>
         );

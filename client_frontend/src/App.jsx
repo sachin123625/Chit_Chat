@@ -13,6 +13,7 @@ import Footer from "./components/Footer";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import { ChatContextProvider } from "./context/ChatContext";
+import './index.css'; // Import enhanced global styles
 
 function App() {
   const location = useLocation();
@@ -23,22 +24,26 @@ function App() {
   const { user } = useContext(AuthContext);
 
   return (
-    <>
+    <div className="app-container">
       <ChatContextProvider user={user}>
         {!hideNavbarAndFooter && <Navbar />}
         
-        <Routes>
-          <Route path="/" element={<Chat />} />
-          <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
-          <Route path="/register" element={user ? <Navigate to="/" /> : <Register />} />
-          <Route path="/about" element={<About />} /> {/* Add About route */}
-          <Route path="/contact" element={<Contact />} /> {/* Add Contact route */}
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
+        <div className={`main-content ${user && !hideNavbarAndFooter ? 'with-sidebar' : ''}`}>
+          <Container fluid className={user ? 'p-0' : 'py-4'}>
+            <Routes>
+              <Route path="/" element={<Chat />} />
+              <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
+              <Route path="/register" element={user ? <Navigate to="/" /> : <Register />} />
+              <Route path="/about" element={<About />} /> {/* Add About route */}
+              <Route path="/contact" element={<Contact />} /> {/* Add Contact route */}
+              <Route path="*" element={<Navigate to="/" />} />
+            </Routes>
+          </Container>
+        </div>
     
-        {!hideNavbarAndFooter && <Footer />}
+        {!hideNavbarAndFooter && !user && <Footer />}
       </ChatContextProvider>
-    </>
+    </div>
   );
 }
 
