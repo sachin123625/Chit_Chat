@@ -39,7 +39,7 @@ const Navbar = () => {
 
     if (!user) {
         return (
-            <nav className="navbar navbar-expand-lg navbar-dark bg-gradient">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-gradient fixed-top">
                 <div className="container-fluid px-4">
                     <a className="navbar-brand d-flex align-items-center text-white" href="/">
                         <img src={logo} alt="Chit Chat Logo" className="navbar-logo me-3" />
@@ -77,10 +77,15 @@ const Navbar = () => {
                                 </a>
                             </li>
                         </ul>
-                        <a href="/login" className="btn btn-primary-custom">
-                            <FaUser className="me-2" />
-                            Login
-                        </a>
+                        <div className="navbar-actions d-flex align-items-center gap-3">
+                            <a href="/register" className="btn btn-outline-custom">
+                                Register
+                            </a>
+                            <a href="/login" className="btn btn-primary-custom">
+                                <FaUser className="me-2" />
+                                Login
+                            </a>
+                        </div>
                     </div>
                 </div>
             </nav>

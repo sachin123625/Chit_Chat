@@ -3,12 +3,19 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "build": "echo 'No build step required for Node.js backend'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["chat", "backend", "nodejs", "express", "mongodb"],
+  "author": "Sachin Maurya",
   "license": "ISC",
-  "description": "",
+  "description": "Backend server for Chit Chat application",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
@@ -18,5 +25,8 @@
     "mongodb": "^6.8.0",
     "mongoose": "^8.4.4",
     "validator": "^13.12.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }

@@ -39,6 +39,7 @@ body {
   line-height: 1.6;
   min-height: 100vh;
   overflow-x: hidden;
+  padding-top: 76px; /* Add padding for fixed navbar */
 }
 
 .app-container {

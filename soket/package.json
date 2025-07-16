@@ -1,5 +1,25 @@
 {
+  "name": "socket_server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "build": "echo 'No build step required for Node.js socket server'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["socket", "websocket", "realtime", "chat"],
+  "author": "Sachin Maurya",
+  "license": "ISC",
+  "description": "Socket.io server for real-time communication in Chit Chat application",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
   "dependencies": {
     "socket.io": "^4.7.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }

@@ -1,55 +1,246 @@
 
+/* Enhanced Footer Styles for Chit Chat App */
 .footer {
-    background-color: #2b2b2b;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
     color: #ffffff;
-    padding: 40px 0;
-}
-.footer h4 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    /* text-align: center; */
+    padding: 60px 0 20px;
+    position: relative;
+    overflow: hidden;
 }
 
-.footer .footer-icon {
-    width: 25px;
-    height: 25px;
-    cursor: pointer;
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #4a90e2, transparent);
 }
 
-.footer .footer-icon:hover {
-    opacity: 0.8;
+.footer-section {
+    margin-bottom: 2rem;
 }
 
-.footer ul {
+.footer-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #4a90e2;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: #4a90e2;
+}
+
+/* Contact Section */
+.contact-item {
+    margin-bottom: 1rem;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    color: #e0e0e0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 0.5rem 0;
+}
+
+.contact-link:hover {
+    color: #4a90e2;
+    transform: translateX(5px);
+}
+
+.contact-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    filter: brightness(0.9);
+    transition: filter 0.3s ease;
+}
+
+.contact-link:hover .contact-icon {
+    filter: brightness(1.2);
+}
+
+/* Social Links */
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    color: #e0e0e0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 0.5rem 0;
+    border-radius: 6px;
+}
+
+.social-link:hover {
+    color: #4a90e2;
+    background: rgba(74, 144, 226, 0.1);
+    transform: translateX(5px);
+    padding-left: 10px;
+}
+
+.footer-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.social-link:hover .footer-icon {
+    transform: scale(1.1);
+}
+
+/* Footer Links */
+.footer-links {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.footer ul li {
-    margin-bottom: 10px;
+.footer-links li {
+    margin-bottom: 0.75rem;
 }
 
-.footer ul li a {
-    color: #ffffff;
+.footer-link {
+    color: #e0e0e0;
     text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
 }
 
-.footer ul li a:hover {
-    text-decoration: underline;
+.footer-link:hover {
+    color: #4a90e2;
+    padding-left: 15px;
 }
 
+.footer-link::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.footer-link:hover::before {
+    opacity: 1;
+}
+
+/* Footer Bottom */
+.footer-divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #4a90e2, transparent);
+    margin: 3rem 0 2rem;
+}
+
+.footer-bottom {
+    color: #b0b0b0;
+}
+
+.footer-bottom p {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.footer-credit {
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.heart-icon {
+    color: #e74c3c;
+    animation: heartbeat 2s ease-in-out infinite;
+    margin: 0 4px;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Scroll to Top Button */
+.scroll-to-top {
+    background: linear-gradient(135deg, #4a90e2, #357abd);
+    border: none;
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+}
+
+.scroll-to-top:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
+    background: linear-gradient(135deg, #357abd, #2c5aa0);
+}
+
+.scroll-to-top:active {
+    transform: translateY(-1px);
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
     .footer {
+        padding: 40px 0 20px;
         text-align: center;
     }
 
-    .footer .row > div {
-        margin-bottom: 20px;
+    .social-links {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .social-link,
+    .contact-link {
+        justify-content: center;
+    }
+
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-title::after {
+        left: 50%;
+        transform: translateX(-50%);
     }
 }
 
-
-.custom-margin {
-    margin-bottom: 20px; /* Adjust the value as needed */
-  }
+@media (max-width: 576px) {
+    .social-links {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .footer-section {
+        margin-bottom: 1.5rem;
+    }
+}

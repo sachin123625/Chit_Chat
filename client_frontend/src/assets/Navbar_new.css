@@ -1,11 +1,30 @@
 /* Enhanced Navbar Styles for Chit Chat App by Sachin Maurya */
 
+/* CSS Variables for consistent theming */
+:root {
+  --primary-color: #4a90e2;
+  --secondary-color: #357abd;
+  --dark-surface: #1a202c;
+  --dark-border: #2d3748;
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.2);
+  --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.3);
+  --border-radius: 8px;
+  --transition: all 0.3s ease;
+}
+
 /* Public Navbar (When user is not logged in) */
 .navbar.bg-gradient {
   background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%) !important;
   box-shadow: var(--shadow-lg);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
+  z-index: 1030;
+}
+
+.navbar.fixed-top {
+  position: fixed !important;
+  top: 0;
+  width: 100%;
 }
 
 .navbar-logo {
@@ -14,12 +33,22 @@
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: var(--transition);
+}
+
+.navbar-logo:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.05);
 }
 
 .brand-text {
   font-weight: 700;
   font-size: 1.5rem;
   letter-spacing: -0.025em;
+  background: linear-gradient(135deg, #ffffff, #f0f8ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .nav-link-custom {
@@ -30,6 +59,7 @@
   transition: var(--transition);
   position: relative;
   overflow: hidden;
+  margin: 0 0.25rem;
 }
 
 .nav-link-custom:hover {
@@ -48,6 +78,123 @@
   position: absolute;
   bottom: 0;
   left: 50%;
+  width: 0;
+  height: 2px;
+  background: white;
+  transition: var(--transition);
+  transform: translateX(-50%);
+}
+
+.nav-link-custom:hover::before,
+.nav-link-custom.active::before {
+  width: 80%;
+}
+
+/* Navbar Actions */
+.navbar-actions {
+  gap: 1rem;
+}
+
+.btn-outline-custom {
+  color: rgba(255, 255, 255, 0.9) !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+  background: transparent !important;
+  padding: 0.5rem 1.5rem !important;
+  border-radius: var(--border-radius) !important;
+  font-weight: 500 !important;
+  transition: var(--transition) !important;
+  text-decoration: none !important;
+}
+
+.btn-outline-custom:hover {
+  color: var(--primary-color) !important;
+  background: white !important;
+  border-color: white !important;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+.btn-primary-custom {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1)) !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+  color: white !important;
+  padding: 0.5rem 1.5rem !important;
+  border-radius: var(--border-radius) !important;
+  font-weight: 600 !important;
+  transition: var(--transition) !important;
+  text-decoration: none !important;
+  backdrop-filter: blur(10px);
+}
+
+.btn-primary-custom:hover {
+  background: white !important;
+  color: var(--primary-color) !important;
+  border-color: white !important;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+}
+
+.navbar-toggler {
+  border: none !important;
+  padding: 0.5rem;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+}
+
+.navbar-toggler:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-toggler:focus {
+  box-shadow: none !important;
+}
+
+/* Mobile responsiveness for navbar */
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background: rgba(74, 144, 226, 0.95);
+    border-radius: var(--border-radius);
+    margin-top: 1rem;
+    padding: 1rem;
+    backdrop-filter: blur(10px);
+  }
+  
+  .navbar-actions {
+    flex-direction: column;
+    margin-top: 1rem;
+    gap: 0.75rem;
+  }
+  
+  .btn-outline-custom,
+  .btn-primary-custom {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Sidebar (When user is logged in) */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 280px;
+  background: var(--dark-surface);
+  border-right: 1px solid var(--dark-border);
+  z-index: 1000;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+}
+
+.sidebar-header {
+  padding: 1.5rem;
   width: 0;
   height: 2px;
   background: white;
