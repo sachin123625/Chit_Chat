@@ -38,7 +38,7 @@ app.get("/health", (req, res) => {
     res.status(200).json({ status: "OK", uptime: process.uptime() });
 });
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8000;
 const uri = process.env.ATLAS_URI;
 
 // Error handling for missing environment variables
