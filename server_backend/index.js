@@ -8,9 +8,23 @@ const messageRoute = require("./Routes/messageRoute");
 const app = express();
 require('dotenv').config();
 
-// CORS configuration for production
+// CORS configuration for production and development
+const allowedOrigins = [
+    "https://realtimechitchatproj.netlify.app",
+    "http://localhost:5173",
+    "http://localhost:3000"
+];
+
 const corsOptions = {
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
+    origin: function (origin, callback) {
+        // allow requests with no origin (like mobile apps, curl, etc.)
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.includes(origin)) {
+            return callback(null, true);
+        } else {
+            return callback(new Error('Not allowed by CORS'));
+        }
+    },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"]
