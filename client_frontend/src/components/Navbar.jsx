@@ -95,7 +95,12 @@ const Navbar = () => {
             <div className={`sidebar ${sidebarCollapsed ? 'collapsed' : ''}`}>
                 <div className="sidebar-header">
                     <div className="d-flex align-items-center">
-                        <img src={logo} alt="Logo" className="sidebar-logo" />
+                        <img 
+                            src={logo} 
+                            alt="Logo" 
+                            className="sidebar-logo" 
+                            style={{ width: '32px', height: '32px', borderRadius: '8px' }} 
+                        />
                         {!sidebarCollapsed && <span className="brand-text ms-3">Chit Chat</span>}
                     </div>
                     <button 

@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCommentDots, faRocket, faUsers, faHeart } from "@fortawesome/free-solid-svg-icons";
 import "../assets/Chat_new.css";
-import slider1 from '../assets/slider1.png';
+import logo from '../assets/logo.png';
 import { AuthContext } from "../context/AuthContext";
 import { ChatContext } from "../context/ChatContext";
 import UserChat from "../components/UserChat";
@@ -127,7 +127,12 @@ const Chat = () => {
               
               <div className="col-lg-6 text-center">
                 <div className="welcome-image">
-                  <img src={slider1} alt="Chat Illustration" className="img-fluid hero-image" />
+                  <img 
+                    src={logo} 
+                    alt="Chit Chat Logo" 
+                    className="img-fluid hero-image" 
+                    style={{ maxWidth: '120px', width: '100%', height: 'auto' }}
+                  />
                   <div className="image-overlay">
                     <div className="floating-card">
                       <div className="card-content">
