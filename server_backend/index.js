@@ -33,8 +33,8 @@ app.get("/", (req, res) => {
     });
 });
 
-// Health check for deployment services
-app.get("/health", (req, res) => {
+// Health check for deployment services (Render expects /healthz)
+app.get("/healthz", (req, res) => {
     res.status(200).json({ status: "OK", uptime: process.uptime() });
 });
 
