@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { FaRocket, FaUsers, FaShieldAlt, FaMobile, FaCode, FaDatabase, FaComments } from 'react-icons/fa';
 import '../assets/About.css';
+import { AuthContext } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const About = () => {
+    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
     const features = [
         {
             icon: <FaComments />,
@@ -34,10 +38,13 @@ const About = () => {
         { category: "Real-time", technologies: ["Socket.io", "WebSocket Protocol"] }
     ];
 
+    const handleGetStarted = () => {
+        navigate(user ? '/chat' : '/login');
+    };
+
     return (
         <div className="about-page">
             <Container className="my-5">
-                {/* Hero Section */}
                 <Row>
                     <Col md={{ span: 10, offset: 1 }}>
                         <div className="about-hero text-center mb-5">
@@ -51,8 +58,6 @@ const About = () => {
                         </div>
                     </Col>
                 </Row>
-
-                {/* Main Content */}
                 <Row>
                     <Col md={{ span: 10, offset: 1 }}>
                         <Card className="about-card shadow-lg">
@@ -147,6 +152,7 @@ const About = () => {
                                             </p>
                                         </div>
                                     </div>
+
                                 </div>
                             </Card.Body>
                         </Card>
