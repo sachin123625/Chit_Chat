@@ -92,33 +92,41 @@ const Navbar = () => {
         );
     } else {
         return (
+
             <div className={`sidebar ${sidebarCollapsed ? 'collapsed' : ''}`}>
                 <div className="sidebar-header">
-                    <div className="d-flex align-items-center">
+                    <div className="d-flex align-items-center gap-3">
                         <img 
                             src={logo} 
                             alt="Logo" 
-                            className="sidebar-logo" 
-                            style={{ width: '32px', height: '32px', borderRadius: '8px' }} 
+                            className="sidebar-logo"
+                            style={{ width: '48px', height: '48px', borderRadius: '50%', objectFit: 'cover', boxShadow: '0 2px 8px rgba(0,0,0,0.10)' }}
                         />
-                        {!sidebarCollapsed && <span className="brand-text ms-3">Chit Chat</span>}
+                        {!sidebarCollapsed && (
+                            <span className="brand-text ms-2" style={{ fontWeight: 800, fontSize: '1.35rem', letterSpacing: '-0.5px' }}>Chit Chat</span>
+                        )}
                     </div>
                     <button 
                         className="btn btn-link text-white p-0 sidebar-toggle"
                         onClick={toggleSidebar}
+                        aria-label="Toggle sidebar"
                     >
                         <FaBars />
                     </button>
                 </div>
-                
-                <div className="sidebar-profile">
-                    <div className="profile-avatar">
+
+                <div className="sidebar-profile" style={{ padding: sidebarCollapsed ? '1.2rem 0.5rem' : '1.5rem', gap: '1rem', alignItems: 'center', display: 'flex', borderBottom: '1px solid #2d3748', background: 'rgba(99,102,241,0.05)' }}>
+                    <div className="profile-avatar" style={{ position: 'relative', width: '48px', height: '48px', borderRadius: '50%', background: 'linear-gradient(135deg, #4a90e2 0%, #357abd 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '1.5rem', boxShadow: '0 2px 8px rgba(0,0,0,0.10)' }}>
                         <FaUser />
+                        {/* Online dot */}
+                        <span style={{ position: 'absolute', bottom: 3, right: 3, width: 12, height: 12, background: '#22c55e', borderRadius: '50%', border: '2px solid #1a202c', display: 'block' }}></span>
                     </div>
                     {!sidebarCollapsed && (
-                        <div className="profile-info">
-                            <h6 className="mb-0">{user.name}</h6>
-                            <small className="text-muted">Online</small>
+                        <div className="profile-info" style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                            <span style={{ fontWeight: 700, color: '#fff', fontSize: '1.08rem', lineHeight: 1 }}>{user.name}</span>
+                            <span style={{ color: '#22c55e', fontWeight: 500, fontSize: '0.92rem', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                <span style={{ fontSize: '0.7em', marginRight: 3, display: 'inline-block' }}>●</span>Online
+                            </span>
                         </div>
                     )}
                 </div>

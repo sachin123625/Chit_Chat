@@ -1,7 +1,7 @@
 export const baseURL =
   process.env.NODE_ENV === "production"
     ? "https://chit-chat-backend-97lm.onrender.com/api"
-    : "http://localhost:8000/api";
+    : "http://localhost:5000/api";
 
 export const postRequest = async (url, body) => {
     try {
