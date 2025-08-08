@@ -344,6 +344,7 @@
   cursor: pointer;
   position: relative;
   gap: 1rem;
+  height: 56px;
 }
 
 .sidebar.collapsed .sidebar-nav .nav-link {
@@ -368,6 +369,7 @@
   font-size: 1.25rem;
   min-width: 20px;
   text-align: center;
+  transition: all 0.2s ease;
 }
 
 .sidebar-nav .nav-link span {
@@ -419,6 +421,50 @@
   100% {
     box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
   }
+}
+
+/* Handle collapsed state for notification dropdown */
+.sidebar.collapsed .notification-dropdown {
+  left: 100%;
+  top: 0;
+}
+
+.sidebar.collapsed .nav-link {
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.sidebar.collapsed .nav-icon-container {
+  margin: 0;
+}
+
+/* Improve sidebar nav items */
+.sidebar-nav .nav-item {
+  margin: 4px 0;
+  position: relative;
+}
+
+/* Active state for nav links */
+.sidebar-nav .nav-link.active .nav-icon,
+.sidebar-nav .nav-link:hover .nav-icon {
+  color: var(--primary-color);
+}
+
+/* Add hover transition for links */
+.sidebar-nav .nav-link span {
+  transition: var(--transition);
+}
+
+.sidebar-nav .nav-link:hover span {
+  color: var(--text-primary);
+  transform: translateX(4px);
+}
+
+/* Fix notification alignment */
+.notification-link {
+  display: flex;
+  align-items: center;
 }
 
 /* Responsive Design */
@@ -487,4 +533,65 @@
 .sidebar-toggle:focus {
   outline: 2px solid rgba(255, 255, 255, 0.5);
   outline-offset: 2px;
+}
+
+/* Improved Sidebar Navigation */
+.nav-icon-container {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.notification-link {
+  position: relative;
+}
+
+.notification-dropdown {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  z-index: 1000;
+  display: none;
+}
+
+.notification-link:hover .notification-dropdown,
+.notification-dropdown:hover {
+  display: block;
+}
+
+/* Make sure the notification items are properly contained */
+.sidebar-nav .nav-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Fixed notification badge positioning */
+.nav-icon-container .notification-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure proper alignment for all nav items */
+.sidebar-nav span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Consistent hover effects */
+.sidebar-nav .nav-link:hover .nav-icon {
+  color: var(--primary-color);
+  transform: scale(1.1);
 }

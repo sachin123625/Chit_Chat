@@ -143,36 +143,49 @@ const Navbar = () => {
                 <ul className="sidebar-nav">
                     <li className="nav-item">
                         <a href="/" className="nav-link">
-                            <FaComments className="nav-icon" />
+                            <div className="nav-icon-container">
+                                <FaComments className="nav-icon" />
+                            </div>
                             {!sidebarCollapsed && <span>Chats</span>}
                         </a>
                     </li>
                     
                     <li className="nav-item">
-                        <div className="nav-link">
-                            <FaBell className="nav-icon" />
+                        <div className="nav-link notification-link">
+                            <div className="notification-icon-container">
+                                <FaBell className="nav-icon" />
+                                {/* Add notification badge here if you want to show unread count */}
+                            </div>
                             {!sidebarCollapsed && <span>Notifications</span>}
-                            <Notifications soundEnabled={soundEnabled} collapsed={sidebarCollapsed} />
+                            <div className="notification-dropdown">
+                                <Notifications soundEnabled={soundEnabled} collapsed={sidebarCollapsed} />
+                            </div>
                         </div>
                     </li>
                     
                     <li className="nav-item">
                         <a href="/about" className="nav-link">
-                            <FaInfoCircle className="nav-icon" />
+                            <div className="nav-icon-container">
+                                <FaInfoCircle className="nav-icon" />
+                            </div>
                             {!sidebarCollapsed && <span>About</span>}
                         </a>
                     </li>
                     
                     <li className="nav-item">
                         <a href="/contact" className="nav-link">
-                            <FaQuestionCircle className="nav-icon" />
+                            <div className="nav-icon-container">
+                                <FaQuestionCircle className="nav-icon" />
+                            </div>
                             {!sidebarCollapsed && <span>Help</span>}
                         </a>
                     </li>
                     
                     <li className="nav-item">
                         <div className="nav-link" onClick={toggleSound}>
-                            {soundEnabled ? <FaVolumeUp className="nav-icon" /> : <FaVolumeMute className="nav-icon" />}
+                            <div className="nav-icon-container">
+                                {soundEnabled ? <FaVolumeUp className="nav-icon" /> : <FaVolumeMute className="nav-icon" />}
+                            </div>
                             {!sidebarCollapsed && <span>Sound {soundEnabled ? "On" : "Off"}</span>}
                         </div>
                     </li>
@@ -181,7 +194,9 @@ const Navbar = () => {
                 <div className="sidebar-footer">
                     <div className="nav-item logout-item">
                         <div className="nav-link" onClick={handleLogout}>
-                            <FaSignOutAlt className="nav-icon" />
+                            <div className="nav-icon-container">
+                                <FaSignOutAlt className="nav-icon" />
+                            </div>
                             {!sidebarCollapsed && <span>Logout</span>}
                         </div>
                     </div>
