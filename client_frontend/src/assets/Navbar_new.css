@@ -1,24 +1,29 @@
 /* Enhanced Navbar Styles for Chit Chat App by Sachin Maurya */
 
-/* CSS Variables for consistent theming */
-:root {
-  --primary-color: #4a90e2;
-  --secondary-color: #357abd;
-  --dark-surface: #1a202c;
-  --dark-border: #2d3748;
-  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.2);
-  --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.3);
-  --border-radius: 8px;
-  --transition: all 0.3s ease;
+/* Import global CSS variables */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
+
+.animate__animated {
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+.animate__fadeIn {
+  animation-name: fadeIn;
+}
+@import url('../index.css');
 
 /* Public Navbar (When user is not logged in) */
 .navbar.bg-gradient {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%) !important;
+  background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-surface) 100%) !important;
   box-shadow: var(--shadow-lg);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--dark-border);
   backdrop-filter: blur(10px);
   z-index: 1030;
+  height: 76px;
 }
 
 .navbar.fixed-top {
@@ -45,32 +50,34 @@
   font-weight: 700;
   font-size: 1.5rem;
   letter-spacing: -0.025em;
-  background: linear-gradient(135deg, #ffffff, #f0f8ff);
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .nav-link-custom {
-  color: rgba(255, 255, 255, 0.9) !important;
+  color: var(--text-secondary) !important;
   font-weight: 500;
   padding: 0.75rem 1.25rem !important;
   border-radius: var(--border-radius);
-  transition: var(--transition);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
   margin: 0 0.25rem;
+  display: flex;
+  align-items: center;
 }
 
 .nav-link-custom:hover {
-  color: white !important;
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-1px);
+  color: var(--primary-color) !important;
+  background: rgba(var(--primary-color-rgb), 0.08);
+  transform: translateY(-2px);
 }
 
 .nav-link-custom.active {
-  color: white !important;
-  background: rgba(255, 255, 255, 0.15);
+  color: var(--primary-color) !important;
+  background: rgba(var(--primary-color-rgb), 0.12);
 }
 
 .nav-link-custom::before {
@@ -79,15 +86,17 @@
   bottom: 0;
   left: 50%;
   width: 0;
-  height: 2px;
-  background: white;
-  transition: var(--transition);
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateX(-50%);
+  opacity: 0;
 }
 
 .nav-link-custom:hover::before,
 .nav-link-custom.active::before {
   width: 80%;
+  opacity: 1;
 }
 
 /* Navbar Actions */
@@ -96,8 +105,8 @@
 }
 
 .btn-outline-custom {
-  color: rgba(255, 255, 255, 0.9) !important;
-  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+  color: var(--text-secondary) !important;
+  border: 2px solid var(--primary-color) !important;
   background: transparent !important;
   padding: 0.5rem 1.5rem !important;
   border-radius: var(--border-radius) !important;

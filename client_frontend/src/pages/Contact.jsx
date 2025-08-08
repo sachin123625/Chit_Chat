@@ -1,6 +1,3 @@
-
-
-
 import React from 'react';
 import { Container, Row, Col, Card, Button, Form, Alert } from 'react-bootstrap';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaGithub, FaLinkedin, FaInstagram, FaPaperPlane } from 'react-icons/fa';
@@ -76,20 +73,25 @@ const Contact = () => {
     };
 
     return (
-        <div className="contact-page gradient-bg">
+        <div className="contact-page gradient-bg" role="main">
             <Container className="my-5">
                 {/* Header Section */}
                 <Row>
                     <Col md={{ span: 10, offset: 1 }}>
                         <div className="contact-header text-center mb-5">
-                            <div className="header-icon mb-4">
+                            <div className="header-icon mb-4" aria-hidden="true">
                                 <FaEnvelope />
                             </div>
                             <h1 className="contact-title display-4 fw-bold">Get In Touch</h1>
                             <p className="contact-subtitle lead">
-                                Have questions about Chit Chat? Want to collaborate or provide feedback? <br />
-                                <span className="text-gradient">We're here to help!</span>
+                                Have a question, idea, or opportunity? <span className="text-gradient">We'd love to hear from you.</span>
                             </p>
+                            <div className="mt-3 d-flex justify-content-center gap-3">
+                                <button onClick={handleGetStarted} className="btn btn-primary-custom px-4">
+                                    {user ? 'Open Chats' : 'Start Chatting'}
+                                </button>
+                                <a href="/about" className="btn btn-secondary-custom px-4">About</a>
+                            </div>
                         </div>
                     </Col>
                 </Row>
@@ -195,15 +197,15 @@ const Contact = () => {
                                         />
                                     </Form.Group>
                                     <div className="form-footer d-flex flex-column align-items-start">
-                                        <Button 
+                                        <button 
                                             onClick={handleEmailClick}
-                                            className="send-button gradient-btn px-5 py-2 fs-5 fw-bold d-flex align-items-center"
-                                            size="lg"
-                                            style={{ border: 'none', borderRadius: '30px', background: 'linear-gradient(90deg, #7f5af0 0%, #2cb67d 100%)', color: '#fff', boxShadow: '0 4px 16px rgba(127,90,240,0.15)' }}
+                                            className="btn btn-primary-custom contact-send-btn"
+                                            aria-label="Send Message"
+                                            type="button"
                                         >
                                             <FaPaperPlane className="me-2" />
-                                            Send Message
-                                        </Button>
+                                            <span className="fw-bold">Send Message</span>
+                                        </button>
                                         <p className="form-note mt-3 text-muted">
                                             * Required fields. We'll get back to you within 24 hours.
                                         </p>
@@ -242,6 +244,14 @@ const Contact = () => {
                             </Card.Body>
                         </Card>
                     </Col>
+                </Row>
+                <Row className="mt-5">
+                  <Col md={{ span: 10, offset: 1 }}>
+                    <div className="contact-banner text-center p-4 rounded-4">
+                      <h5 className="mb-2">Building a better way to stay connected.</h5>
+                      <p className="mb-0 small text-muted">Fast. Minimal. Secure. Crafted with attention to detail.</p>
+                    </div>
+                  </Col>
                 </Row>
             </Container>
         </div>

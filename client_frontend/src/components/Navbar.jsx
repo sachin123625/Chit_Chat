@@ -39,7 +39,7 @@ const Navbar = () => {
 
     if (!user) {
         return (
-            <nav className="navbar navbar-expand-lg navbar-dark bg-gradient fixed-top">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-gradient fixed-top animate__animated animate__fadeIn">
                 <div className="container-fluid px-4">
                     <a className="navbar-brand d-flex align-items-center text-white" href="/">
                         <img src={logo} alt="Chit Chat Logo" className="navbar-logo me-3" />
@@ -59,19 +59,28 @@ const Navbar = () => {
                     <div className="collapse navbar-collapse" id="navbarContent">
                         <ul className="navbar-nav mx-auto">
                             <li className="nav-item">
-                                <a className="nav-link nav-link-custom active" href="/">
+                                <a 
+                                  className={`nav-link nav-link-custom ${window.location.pathname === '/' ? 'active' : ''}`} 
+                                  href="/"
+                                >
                                     <FaHome className="me-2" />
                                     Home
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link nav-link-custom" href="/about">
+                                <a 
+                                  className={`nav-link nav-link-custom ${window.location.pathname === '/about' ? 'active' : ''}`}
+                                  href="/about"
+                                >
                                     <FaInfoCircle className="me-2" />
                                     About
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link nav-link-custom" href="/contact">
+                                <a 
+                                  className={`nav-link nav-link-custom ${window.location.pathname === '/contact' ? 'active' : ''}`}
+                                  href="/contact"
+                                >
                                     <FaQuestionCircle className="me-2" />
                                     Contact
                                 </a>
@@ -81,7 +90,7 @@ const Navbar = () => {
                             <a href="/register" className="btn btn-outline-custom">
                                 Register
                             </a>
-                            <a href="/login" className="btn btn-primary-custom">
+                            <a href="/login" className="btn btn-primary-custom d-flex align-items-center">
                                 <FaUser className="me-2" />
                                 Login
                             </a>

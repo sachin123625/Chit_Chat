@@ -11,23 +11,23 @@ const About = () => {
     const features = [
         {
             icon: <FaComments />,
-            title: "Real-time Messaging",
-            description: "Instant message delivery with Socket.io technology"
+            title: "Chat Like You're There",
+            description: "Messages arrive instantly—no awkward waiting or refreshing needed"
         },
         {
             icon: <FaShieldAlt />,
-            title: "Secure Authentication",
-            description: "Protected user accounts with JWT authentication"
+            title: "Your Convos Stay Private",
+            description: "Rock-solid security keeps your chats between you and your friends"
         },
         {
             icon: <FaUsers />,
-            title: "Group Conversations",
-            description: "Create and manage chat rooms for team collaboration"
+            title: "Bring the Gang Together",
+            description: "Create group chats for your friends, family, or team projects"
         },
         {
             icon: <FaMobile />,
-            title: "Responsive Design",
-            description: "Seamless experience across all devices and screen sizes"
+            title: "Looks Great Everywhere",
+            description: "Whether you're on phone, tablet, or laptop—it just works"
         }
     ];
 
@@ -43,18 +43,24 @@ const About = () => {
     };
 
     return (
-        <div className="about-page">
+        <div className="about-page" role="main">
             <Container className="my-5">
                 <Row>
                     <Col md={{ span: 10, offset: 1 }}>
                         <div className="about-hero text-center mb-5">
-                            <div className="hero-icon mb-4">
+                            <div className="hero-icon mb-4" aria-hidden="true">
                                 <FaRocket />
                             </div>
                             <h1 className="hero-title">About Chit Chat</h1>
                             <p className="hero-subtitle">
-                                A modern real-time chat application designed to bring people together through seamless communication
+                                A privacy‑aware real-time chat platform crafted for effortless, expressive conversations.
                             </p>
+                            <div className="about-cta mt-4 d-flex justify-content-center gap-3">
+                                <button className="btn btn-primary-custom px-4" onClick={handleGetStarted}>
+                                    {user ? 'Open Chats' : 'Get Started'}
+                                </button>
+                                <a href="/contact" className="btn btn-secondary-custom px-4">Contact</a>
+                            </div>
                         </div>
                     </Col>
                 </Row>
@@ -64,11 +70,15 @@ const About = () => {
                             <Card.Body className="p-5">
                                 <div className="about-content">
                                     <p className="lead">
-                                        <strong>Chit Chat</strong> is a cutting-edge real-time chat application that transforms 
-                                        the way people communicate online. Built with modern web technologies, it provides 
-                                        a seamless, secure, and intuitive platform for instant messaging.
+                                        <strong>Chit Chat</strong> is built to feel personal, fluid, and dependable. Conversations appear instantly, the interface stays out of your way, and everything is tuned for clarity in a dark, distraction‑free environment.
                                     </p>
-
+                                    {/* Animated Stats */}
+                                    <div className="stats-grid mt-4 mb-5">
+                                      <div className="stat-box"><span className="stat-value">Realtime</span><span className="stat-label">Messaging Core</span></div>
+                                      <div className="stat-box"><span className="stat-value">Secure</span><span className="stat-label">Session Handling</span></div>
+                                      <div className="stat-box"><span className="stat-value">Scalable</span><span className="stat-label">Socket Layer</span></div>
+                                      <div className="stat-box"><span className="stat-value">Responsive</span><span className="stat-label">Adaptive UI</span></div>
+                                    </div>
                                     {/* Features Section */}
                                     <div className="features-section mt-5">
                                         <h3 className="section-title">
@@ -120,20 +130,20 @@ const About = () => {
                                         </h3>
                                         <div className="highlight-grid">
                                             <div className="highlight-item">
-                                                <h6>Frontend Development</h6>
-                                                <p>Developed a responsive and intuitive user interface using React, Bootstrap, and modern CSS techniques</p>
+                                                <h6>The Look & Feel</h6>
+                                                <p>I crafted an interface that feels welcoming and intuitive—like walking into a friend's living room rather than a tech company's lobby</p>
                                             </div>
                                             <div className="highlight-item">
-                                                <h6>Backend Architecture</h6>
-                                                <p>Built a robust server-side application with Node.js and Express, handling authentication and message routing</p>
+                                                <h6>Behind the Scenes</h6>
+                                                <p>Under the hood is a carefully built system that routes your messages quickly and keeps everything running smoothly</p>
                                             </div>
                                             <div className="highlight-item">
-                                                <h6>Real-time Communication</h6>
-                                                <p>Implemented instant messaging capabilities using Socket.io for seamless real-time user interaction</p>
+                                                <h6>Lightning-Fast Delivery</h6>
+                                                <p>Messages zip back and forth instantly—so conversations flow naturally, just like they would in person</p>
                                             </div>
                                             <div className="highlight-item">
-                                                <h6>Database Management</h6>
-                                                <p>Designed and implemented MongoDB schemas for efficient data storage and retrieval</p>
+                                                <h6>Smart Organization</h6>
+                                                <p>Your chats and contacts are stored thoughtfully so everything's right where you expect it to be when you need it</p>
                                             </div>
                                         </div>
                                     </div>
@@ -147,9 +157,12 @@ const About = () => {
                                                 Indraprastha Institute of Information Technology Delhi
                                             </p>
                                             <p className="project-note">
-                                                This project demonstrates modern web development practices, 
-                                                real-time communication implementation, and full-stack development skills.
+                                                Focused on building fast, human‑centered interfaces that encourage genuine interaction.
                                             </p>
+                                            <div className="mt-3">
+                                                <button className="btn btn-primary-custom me-3" onClick={handleGetStarted}>{user ? 'Go to Chats' : 'Join Now'}</button>
+                                                <a href="/contact" className="btn btn-secondary-custom">Reach Out</a>
+                                            </div>
                                         </div>
                                     </div>
 
